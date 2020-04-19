@@ -1,0 +1,36 @@
+eureka:
+  client:
+    enabled: false
+    registerWithEureka: false
+  fetchRegistry: false
+
+# Server configuration
+server:
+  context-path: /micro
+  port: ${SERVICE_PORT:8080}
+
+management:
+  port: ${MANAGEMENT_PORT:8090}
+
+# Spring properties
+spring:
+  application:
+    name: inventory
+
+  # MySQL Data source configuration
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:inventorydb}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:}
+    port: ${MYSQL_PORT:3306}
+    max-active: 4
+    testOnBorrow: true
+    validationQuery: SELECT 1
+
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
